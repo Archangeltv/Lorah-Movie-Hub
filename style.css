@@ -12,6 +12,7 @@
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
   margin: 0;
+  overflow: hidden;
   padding: 0;
 }
 
@@ -172,6 +173,7 @@ section .menu ul li:hover i {
   cursor: pointer;
   align-items: center;
   justify-content: center;
+  overflow: visible;
 }
 
 .header .hamburger .line {
@@ -204,6 +206,7 @@ section .menu ul li:hover i {
   background-color: var(--white);
   padding: 4px 20px;
   border-radius: 20px;
+  overflow: hidden;
 }
 
 .header .search button {
