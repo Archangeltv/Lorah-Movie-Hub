@@ -37,15 +37,26 @@ function fetchHeroDiv() {
 fetchHeroDiv();
 
 function searchMovie() {
-  fetch(`${BASE_URL}search/movie?api_key=${api_key}&query=${searchBar.value}`)
+  fetch(`${BASE_URL}search/multi?api_key=${api_key}&query=${searchBar.value}`)
     .then((response) => response.json())
     .then((data) => {
       const movies = Object.keys(data.results).map((movie) => {
-        return `<div class="searcc"><img src="http://image.tmdb.org/t/p/w500${data.results[movie].poster_path}" alt="${data.results[movie].title}" /><p class="movieName"> ${data.results[movie].title}</p></div>`;
+        return `<div class="searcc"><img src="http://image.tmdb.org/t/p/w500${
+          data.results[movie].poster_path
+        }" alt="${
+          data.results[movie].title
+            ? data.results[movie].title
+            : data.results[movie].name
+        }" /><p class="movieName"> ${
+          data.results[movie].title
+            ? data.results[movie].title
+            : data.results[movie].name
+        }</p></div>`;
       });
       searcher.innerHTML = `<div class="search">${movies}</div>`;
       content.hidden = true;
       searcher.hidden = false;
+      console.log(data);
     });
 }
 
@@ -54,6 +65,7 @@ searchBar.addEventListener("keyup", () => {
     content.hidden = false;
     searcher.hidden = true;
   }
+  // searchMovie();
   window.addEventListener("keyup", (e) => {
     if (e.key == "Enter") {
       searchMovie();
